@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [[ -f "$1/secrets.yml" ]]; then
+  echo "summon"
+  exit 0
+fi
+
+exit 1
