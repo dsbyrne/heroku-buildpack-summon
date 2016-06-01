@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 if [[ -f "$1/secrets.yml" ]]; then
-  echo "summon"
+  echo "Summon"
   exit 0
 fi
 
+echo "No secrets.yml found!"
 exit 1

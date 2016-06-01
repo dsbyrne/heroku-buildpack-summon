@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
+SUMMON_PATH=/app/.heroku/summon
+mkdir -p $SUMMON_PATH
+
 # Install Summon
 curl -o summon.tgz -sSL https://github.com/conjurinc/summon/releases/download/v0.4.0/summon_v0.4.0_linux_amd64.tar.gz
 tar -xf summon.tgz
-mv summon /usr/local/bin
+mv summon $SUMMON_PATH
 
 # Install Conjur provider for Summon
 curl -o summon-conjur.zip -sSL https://github.com/conjurinc/summon-conjur/releases/download/v0.1.4/summon-conjur_v0.1.4_linux-amd64.zip
 unzip summon-conjur.zip
-mkdir -p /usr/local/lib/summon
-mv summon-conjur /usr/local/lib/summon
+mv summon-conjur $SUMMON_PATH
