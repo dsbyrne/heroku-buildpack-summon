@@ -18,13 +18,13 @@ var_exists "CONJUR_SSL_CERTIFICATE"
 if [[ $STATUS -ne 0 ]]; then
   echo "Cannot continue. Config variables missing."
   exit $STATUS
-end
+fi
 
 mkdir -p $1
 pushd $1
 
-cp $ENV_DIR/CONJUR_SSL_CERTIFICATE conjur.pem
 touch .netrc
+cp $ENV_DIR/CONJUR_SSL_CERTIFICATE conjur.pem
 
 curl -sSL https://github.com/conjurinc/summon/releases/download/v0.4.0/summon_v0.4.0_linux_amd64.tar.gz | tar xz
 curl -o summon-conjur.zip -sSL https://github.com/conjurinc/summon-conjur/releases/download/v0.1.4/summon-conjur_v0.1.4_linux-amd64.zip
