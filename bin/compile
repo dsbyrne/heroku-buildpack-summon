@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SUMMON_PATH=/app/.heroku/summon
+SUMMON_PATH=$HOME/vendor/bin
 mkdir -p $SUMMON_PATH
 
 # Install Summon
