@@ -1,9 +1,30 @@
 #!/usr/bin/env bash
 
+ENV_DIR=$3
+STATUS=0
+var_exists () {
+  if [[ -e $ENV_DIR/$1 ]]; then
+    echo "$1 is not set as a Heroku config variable."
+    STATUS=1
+  fi
+}
+
+var_exists "CONJUR_ACCOUNT"
+var_exists "CONJUR_APPLIANCE_URL"
+var_exists "CONJUR_AUTHN_API_KEY"
+var_exists "CONJUR_AUTHN_LOGIN"
+var_exists "CONJUR_SSL_CERTIFICATE"
+
+if [[ $STATUS -ne 0 ]]; then
+  echo "Cannot continue. Config variables missing."
+  exit $STATUS
+end
+
 mkdir -p $1
 pushd $1
 
-echo "$CONJUR_SSL_CERTIFICATE" > conjur.pem
+cp $ENV_DIR/CONJUR_SSL_CERTIFICATE conjur.pem
+touch .netrc
 
 curl -sSL https://github.com/conjurinc/summon/releases/download/v0.4.0/summon_v0.4.0_linux_amd64.tar.gz | tar xz
 curl -o summon-conjur.zip -sSL https://github.com/conjurinc/summon-conjur/releases/download/v0.1.4/summon-conjur_v0.1.4_linux-amd64.zip
