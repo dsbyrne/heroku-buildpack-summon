@@ -3,7 +3,7 @@
 ENV_DIR=$3
 STATUS=0
 var_exists () {
-  if [[ -e $ENV_DIR/$1 ]]; then
+  if [[ -f $ENV_DIR/$1 ]]; then
     echo "$1 is not set as a Heroku config variable."
     STATUS=1
   fi
