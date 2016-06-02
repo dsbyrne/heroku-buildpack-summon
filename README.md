@@ -8,6 +8,7 @@ $ heroku buildpacks:add --app my-app https://github.com/dsbyrne/heroku-buildpack
 ```
 
 This buildpack will require a few prerequisites:
+
 1. Your app slug contains a `secrets.yml` in the root directory. [Read more here](http://conjurinc.github.io/summon).
 2. You have a Procfile which invokes Summon.  
     `web: ./summon node src/server.js`
