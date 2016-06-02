@@ -25,6 +25,8 @@ pushd $1
 
 touch .netrc
 cp $ENV_DIR/CONJUR_SSL_CERTIFICATE conjur.pem
+
+mkdir -p .profile
 echo "export CONJUR_CERT_FILE=/app/conjur.pem" > .profile/summon-env.sh
 
 curl -sSL https://github.com/conjurinc/summon/releases/download/v0.4.0/summon_v0.4.0_linux_amd64.tar.gz | tar xz
